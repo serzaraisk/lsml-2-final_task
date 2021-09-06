@@ -5,11 +5,13 @@ For this final task I choose sentiment analysis task for movie review.
 I will IMDB [dataset](https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews) for this task.
 
 ## Model
-* As I'm using quite simple model (LSTM + Linear) and I have quite easy classification task(binary classification), I trained from scratch, using ML flow
+* As I'm using quite simple model (LSTM + Linear) and I have quite easy classification task (binary classification), I trained from scratch, using ML flow
 * I created account on databricks to track experiments here
-* I'm using binary-cross entropy for this task
+That is a proof that I had several runs within experiment:
+![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
+* I'm using binary-cross entropy for this task, as It's a binary classification task
 * I trained embedings from scratch for this task
-* As this task is quite simple, with 5 epochs I get 85% accuracy score
+* As this task is quite simple, with 5 epochs I get 85% accuracy score(I trained with GPU on Udacity, I had GPU hours from another program)
 
 ## Structure and client 
 * I decided to use synchronous project with Flask
@@ -31,7 +33,6 @@ My project consist of two folders:
   * server.py - application script, with flask functions
   * utils.py - helper for server.py, contains model loading and predict function
 
-Also I have docker-compose file which creates two containers:
- * Model
-   1. When container starts, MLflow project train model from scratch, send the results to databricks(for history), then creates model, which will answer the requests from Application
- * Application - Flask application, which gets reviews from users and ask Model which sentiment it is.
+Also I have docker-compose file which creates one container, which uses model artifacts from Databricks(I couldn't impliment direct connection to databricks to learn model from scratch, when I run container, so I decided to save artifacts inside container.
+
+When docker is up, my application lies on http://127.0.0.1:5000/ (worked on my local computer)
